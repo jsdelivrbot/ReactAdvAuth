@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
-    "prestart": "NODE_ENV=development nodemon --watch server --exec babel-node server/index.js --delay 2",
+    "apiserver": "NODE_ENV=development nodemon --watch server --exec babel-node server/index.js --delay 2",
     "start": "NODE_ENV=development webpack-dev-server --inline --hot",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
@@ -30,7 +30,7 @@
     "mocha": "^2.4.5",
     "nodemon": "^1.11.0",
     "react-addons-test-utils": "^0.14.7",
-    "react-hot-loader": "^1.3.1",
+    "react-hot-loader": "^3.0.0-beta.7",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
@@ -40,6 +40,7 @@
     "axios": "^0.16.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.11.8",
@@ -53,6 +54,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-form": "^7.0.3"
+    "redux-form": "^7.0.3",
+    "redux-thunk": "^2.2.0"
   }
 }

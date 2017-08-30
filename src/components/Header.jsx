@@ -2,31 +2,40 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { authenticate } from '../actions';
+import { signOutUser } from '../actions';
 
 class Header extends Component {
-    onAuthButtonClick = event => {
-        this.props.authenticate(!this.props.authenticated);
+    onSignOut = (event) => {
+        event.preventDefault();
+        this.props.signOutUser();
     }
 
-    authButton() {
-        return (
-            <button className="" onClick={this.onAuthButtonClick}>
-                {this.props.authenticated ? 'Sign Out' : 'Sign In'}
-            </button>
-        )
+    renderAuthOptions() {
+        if (this.props.authenticated) {
+            return (
+                <li className="nav-item">
+                    <Link to="/signout" className="nav-link">Sign Out</Link>
+                </li>
+            );
+        }
+        else {
+            return [
+                <li className="nav-item" key={1}>
+                    <Link to="/signin" className="nav-link">Sign In</Link>
+                </li>,
+                <li className="nav-item" key={2}>
+                    <Link to="/signup" className="nav-link">Sign Up</Link>
+                </li>
+            ];
+        }
     }
 
     render() {
         return (
             <nav className="navbar">
+                <Link to="/" className="navbar-brand">Home</Link>
                 <ul className="nav navbar-nav">
-                    <li className="nav-item">
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        {this.authButton()}
-                    </li>
+                    {this.renderAuthOptions()}
                 </ul>
             </nav>
         );
@@ -34,6 +43,6 @@ class Header extends Component {
 }
 
 export default connect(
-    state => ({ authenticated: state.authenticated }),
-    { authenticate }
+    state => ({ authenticated: state.auth.authenticated }),
+    { signOutUser }
 )(Header);

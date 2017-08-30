@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import router from './router';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 //Db Setup
 mongoose.connect('mongodb://127.0.0.1/react-auth', {useMongoClient: true})
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://127.0.0.1/react-auth', {useMongoClient: true})
 //app setup
 const app = express();
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
  
