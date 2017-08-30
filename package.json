@@ -7,6 +7,7 @@
   "scripts": {
     "apiserver": "NODE_ENV=development nodemon --watch server --exec babel-node server/index.js --delay 2",
     "start": "NODE_ENV=development webpack-dev-server --inline --hot",
+    "build:prod": "NODE_ENV=production webpack",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },

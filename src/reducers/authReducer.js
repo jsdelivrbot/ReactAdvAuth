@@ -8,6 +8,8 @@ export default function (state = {}, action) {
             return { ...state, authenticated: false };
         case ActionTypes.SIGN_ERROR:
             return { ...state, error: action.payload };
+        case ActionTypes.FETCH_API_MESSAGE:
+        return { ...state, apiMessage: action.payload };
         default:
             return state;
     }

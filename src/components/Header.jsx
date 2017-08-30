@@ -33,7 +33,7 @@ class Header extends Component {
     render() {
         return (
             <nav className="navbar">
-                <Link to="/" className="navbar-brand">Home</Link>
+                <Link to="/" className="navbar-brand">Redux Auth</Link>
                 <ul className="nav navbar-nav">
                     {this.renderAuthOptions()}
                 </ul>

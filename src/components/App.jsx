@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 
+import history from '../services/history';
 import Header from './Header';
 import Home from './Home';
-import SignIn from '../components/auth/SignIn';
-import SignOut from '../components/auth/SignOut';
-import SignUp from '../components/auth/SignUp';
+import NotFound from './NotFound';
+import RequireAuth from './auth/RequireAuth';
+import SignIn from './auth/SignIn';
+import SignOut from './auth/SignOut';
+import SignUp from './auth/SignUp';
+import Feature from './Feature';
 
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <Router history={history}>
                 <div>
                     <Header />
                     <Switch>
+                        <Route exact path="/" component={Home} />
                         <Route path="/signout" component={SignOut} />
                         <Route path="/signup" component={SignUp} />
                         <Route path="/signin" component={SignIn} />
-                        <Route path="/" component={Home} />
+                        <Route path="/feature" component={RequireAuth(Feature)} />
+                        <Route component={NotFound} />
                     </Switch>
                 </div>
-            </BrowserRouter>
+            </Router>
         );
     }
 }

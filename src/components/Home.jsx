@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Home extends Component {
-    componentWillMount() {
-        //call some init action
-    }
-
     render() {
         return (
-            <div>
-                Home Page
+            <div className="jumbotron">
+                <h3>Client-Side Auth via JWT</h3>
             </div>
         );
     }
 }
 
-export default connect(
-    state => ({  }),
-    { }
-)(Home);
+export default Home;
 
 
 

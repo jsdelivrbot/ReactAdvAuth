@@ -7,11 +7,17 @@ import reduxThunk from 'redux-thunk';
 import './css/site.css';
 import App from './components/App';
 import rootReducer from './reducers/rootReducer';
+import * as ActionTypes from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(rootReducer);
+
+if (localStorage.getItem('auth_token')) {
+    store.dispatch({ type: ActionTypes.SIGN_IN })
+}
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(rootReducer)}>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.querySelector('.container')
