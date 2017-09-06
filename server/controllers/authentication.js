@@ -1,11 +1,11 @@
 import User from '../models/user';
 import jwt from 'jwt-simple';
 
-import config from '../config';
+import configKeys from '../config/keys';
 
 function tokenForUser(user) {
     const timestamp = new Date().getTime();
-    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+    return jwt.encode({ sub: user.id, iat: timestamp }, configKeys.jwtEncryptionKey);
 }
 
 export function signup(request, response, next) {
@@ -42,6 +42,7 @@ export function signup(request, response, next) {
 }
 
 export function signin(request, response, next) {
+    console.log("mm yeah: ", request.user)
     response.json({ token: tokenForUser(request.user) });
 }
 

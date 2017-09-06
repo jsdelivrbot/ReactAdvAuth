@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
 const userSchema = new Schema({
+    googleId: { type: String, unique: true },
     email: { type: String, unique: true, lowercase: true },
     password: String
 });

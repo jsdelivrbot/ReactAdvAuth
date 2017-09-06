@@ -6,8 +6,10 @@ import router from './router';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import { mongoURI } from './config/keys';
+
 //Db Setup
-mongoose.connect('mongodb://127.0.0.1/react-auth', {useMongoClient: true})
+mongoose.connect(mongoURI)
 
 
 //app setup

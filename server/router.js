@@ -3,7 +3,7 @@ import passport from 'passport';
 import * as Authentication from './controllers/authentication';
 import './services/passport';
 
-const requireAuthToken  = passport.authenticate('jwt', { session: false });
+const requireAuthToken = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
 
 export default function (app) {
@@ -12,4 +12,11 @@ export default function (app) {
     });
     app.post('/signin', requireSignin, Authentication.signin);
     app.post('/signup', Authentication.signup);
+
+    app.get('/auth/google', passport.authenticate('google', {
+            scope: ['profile', 'email']
+        })
+    );
+
+    app.get('/auth/google/callback', passport.authenticate('google', { session: false }), Authentication.signin);
 }
